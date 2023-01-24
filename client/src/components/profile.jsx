@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import { Link, } from 'react-router-dom';
 import axios from 'axios';
 import  jwt  from 'jwt-decode';
-import './profile.css'; // import custom stylesheet
+import './profile.css'; 
 
 const Profile = () => {
     const [name,setName]=useState({})
@@ -12,6 +12,7 @@ const Profile = () => {
     const userName=decoded.name 
 
     const getUser = async () => {
+        //get details about the student
         const token = localStorage.getItem('token');
         const { data } = await axios.get('http://localhost:3001/api/registers', {
             headers: {
@@ -22,6 +23,7 @@ const Profile = () => {
     }
 
     const getSubjects = async () => {
+        //get details about the courses he already registered for
         const token = localStorage.getItem('token');
         const decoded=jwt(token);
         const userId=decoded.id 
@@ -42,7 +44,7 @@ const Profile = () => {
 
     return (
         <div className="profile-container">
-            <h3 className="greeting">Hey {userName.split(" ")[0]}! <br/>Those are your courses:</h3>
+            <h3 className="greeting">Hey {userName.split(" ")[0].toUpperCase()}! <br/>Those are your courses:</h3>
             <div className="courses-container">
                 {subjects.map((subject, index) => (
                 <div key={index} className="course-card">
@@ -51,6 +53,7 @@ const Profile = () => {
                 ))}
             </div>
             <h4 className="challenge-text">Want to challenge yourself?</h4>
+            {/* //send you to main page to choose more courses */}
             <Link to="/">
                 <button className="challenge-btn">Click here to try more courses</button>
             </Link>           

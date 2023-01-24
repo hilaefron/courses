@@ -11,12 +11,12 @@ const LogIn = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
+        //check if signed up, and if so, check id details are correct
         e.preventDefault();
         try {
             const loginData = { email: email, password: password };
             const loginResponse = await axios.post("http://localhost:3001/api/logIn", loginData);
             const token = loginResponse.data.token;
-            console.log(jwt(token));
             localStorage.setItem("token", token);
             setAuthToken(token);
             navigate('/profile',jwt(token));
@@ -27,28 +27,51 @@ const LogIn = () => {
     };
 
     return (
-        <div className="login-card">
-          <div className="card-header">
-            <h2 className="card-title">Log In</h2>
-          </div>
-            <form onSubmit={handleSubmit} className="card-body">
-                <div className="form-control">
-                <label className="form-label" htmlFor="email">Email</label>
-                <input className="form-input" type="email" id="email" value={email} onChange={e => setEmail(e.target.value)}  required/>
+        <div className="login-card-container">
+            <div className="login-card">
+
+                <div className="card-header">
+                    <h1 className="card-title">Log In</h1>
                 </div>
 
-                <div className="form-control">
-                <label className="form-label" htmlFor="password">Password</label>
-                <input className="form-input" type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} required/>
+                <div className="card-body">
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-control">
+                            <label className="form-label" htmlFor="email">Email</label>
+                            <input
+                                className="form-input"
+                                type="email"
+                                id="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="form-label" htmlFor="password">Password</label>
+                            <input
+                                className="form-input"
+                                type="password"
+                                id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-footer">
+                            <div>
+                                <button className="form-submit-btn" type="submit">Log In</button>
+                            </div>
+                            <div>
+                                <Link to="/signup" className="form-link">Not registerd yet? <br/>Sign Up here!</Link>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
-                <div className="form-footer">
-                <button className="form-submit-btn" type="submit">Submit</button>
-                <Link className="form-link" to="/signup">Don't have an account? Sign up</Link>
-                </div>
-            </form>
+            </div>
         </div>
-    );
+    )
 }
 
 export default LogIn;

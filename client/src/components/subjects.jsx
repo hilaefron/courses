@@ -28,7 +28,8 @@ const Subjects = () => {
         const subjectId=subject.subject_id 
         const courseName=subject.subject_name
         try{
-            await axios.post("http://localhost:3001/api/registers",{userId:userId,subjectId:subjectId, courseName:courseName})
+            await axios.post("http://localhost:3001/api/registers",
+            {userId:userId,subjectId:subjectId, courseName:courseName})// register a logged in student to the course
             alert('signed up successfully!')
         }
         catch(err){
@@ -37,9 +38,9 @@ const Subjects = () => {
     }
     return (
         <div >
-<div className="header-container">
-  <h1>wellcome to college.com</h1>
-</div>
+            <div className="header-container">
+                <h1>Wellcome to college.com</h1>
+            </div>
             <div className="subjects-container">
                 {subjects.map((subject, index) => (
                 <div key={index} className="subject-card">

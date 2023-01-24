@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {setAuthToken} from '../token'
-import { useNavigate } from 'react-router-dom';
-import  jwt  from 'jwt-decode';
+import { useNavigate ,Link} from 'react-router-dom';
+import './logIn.css'
 
 
 const SignUp = () => {
@@ -21,8 +21,6 @@ const SignUp = () => {
                 const loginData = { email: email, password: password };
                 const loginResponse = await axios.post("http://localhost:3001/api/logIn", loginData);
                 const token = loginResponse.data.token;
-                console.log(token);
-                console.log(jwt(token));
                 // Save token to local storage
                 localStorage.setItem("token", token);
                 setAuthToken(token);
@@ -35,35 +33,61 @@ const SignUp = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3>Sign up</h3>
+        <div className="login-card-container">
+        <div className="login-card">
 
-            <div class="form-group">
-                <label>Name</label>
-                <input 
-                type="text" 
-                value={name} 
-                onChange={(e) => setName(e.target.value)} />
+            <div className="card-header">
+                <h1 className="card-title">Sign Up</h1>
             </div>
 
-            <div class="form-group">
-                <label>Email address</label>
-                <input 
-                type="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} />
+            <div className="card-body">
+                <form onSubmit={handleSubmit}>
+                    <div className="form-control">
+                        <label className="form-label" htmlFor="name">Name</label>
+                        <input
+                            className="form-input"
+                            type="text"
+                            id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label className="form-label" htmlFor="email">Email</label>
+                        <input
+                            className="form-input"
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label className="form-label" htmlFor="password">Password</label>
+                        <input
+                            className="form-input"
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-footer">
+                        <div>
+                            <button className="form-submit-btn" type="submit">Sign Up</button>
+                        </div>
+                        <div>
+                            <Link to="/login" className="form-link">Alredy registeres? <br/>Log in here!</Link>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input 
-                type="password" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} />
-            </div>
-
-            <button type="submit" class="btn btn-primary">sin up</button>
-            </form>  
-  );
+            
+        </div>
+    </div>
+)
 }
 export default SignUp;

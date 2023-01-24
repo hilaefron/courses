@@ -6,13 +6,16 @@ import './navBar.css'
 const NavBar = () => {
   const [name,setName]=useState('')
   const [disable,setDisable]=useState('')
+
   useEffect(() => {
    if( localStorage.getItem('token'))
     {setName(jwt(localStorage.getItem('token')).name.split(" ")[0])
     setDisable('block')}else
     {setName('Guest')
-  setDisable('none')}
-  },[]);
+    setDisable('none')}
+    //if logged in there is no option to log out or see the student's courses
+  },[])
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ fontFamily: "Poppins" }}>
       <a className="navbar-brand" href="/" >College.com</a>
@@ -20,9 +23,9 @@ const NavBar = () => {
           <div className="navbar-nav">
           <a className="nav-item nav-link" href="/login">Log in</a>
           <a className="nav-item nav-link" href="/" 
-          onClick={()=>{localStorage.removeItem('token')}}>Log out</a>
+          onClick={()=>{localStorage.removeItem('token')}} style={{"display":disable}}>Log out</a>
           <a className="nav-item nav-link" href="/profile" style={{"display":disable}}>
-            {name}'s courses</a>
+            {name.toUpperCase()}'s courses</a>
           </div>
       </div>
     </nav>

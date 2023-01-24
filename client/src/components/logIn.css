@@ -1,5 +1,14 @@
-.login-card {
-    max-width: 400px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+.login-card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -2rem;
+    min-height: 100vh;
+  }
+  
+  .login-card {
+    width: 450px;
     margin: 0 auto;
     background-color: #e8eaf6;
     border: 1px solid #9fa8da;
@@ -7,72 +16,91 @@
     box-shadow: 2px 2px 8px #c5cae9;
     padding: 2rem;
     font-family: 'Poppins', sans-serif;
+
   }
+
   
   .card-header {
     text-align: center;
+    background-color: #e8eaf6;
   }
   
   .card-title {
-    margin-bottom: 1rem;
+    margin-bottom: 0.3rem;
     font-size: 2rem;
     font-weight: bold;
-   
     color: #4d4d4d;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-control {
+    width: 300px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.card-body{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  
+  .form-label {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4d4d4d;
+  }
+  
+  .form-input {
+    padding: 0.6rem; 
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem; 
+    width:100%; 
+  } 
+  .form-footer {
+    width: 100%;
+    margin-top: 2rem;
+    display: block;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+  }
+  
+  .form-submit-btn {
+    margin-right: 1rem;
+        margin-left: 6rem;
 
-.form-control {
-  width: 100%;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-label {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #4d4d4d;
-}
-
-.form-input {
-    padding: 0.8rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #333;
+    color: #fff;
     border-radius: 5px;
     border: none;
     font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+
+    justify-content: center;
+
   }
   
-  .form-footer {
-      width: 100%;
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-    }
-    .form-submit-btn {
-      padding: 1rem 2rem;
-      background-color: #333;
-      color: #fff;
-      border-radius: 5px;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-
-.form-submit-btn:hover {
+  .form-submit-btn:hover {
     background-color: #4d4d4d;
   }
   
   .form-link {
+    margin-right: 1rem;
+    margin-left: 2rem;
+    padding: 0.8rem 1.5rem;
+    text-align: center;
     font-size: 1.2rem;
     color: #4d4d4d;
     text-decoration: none;
+    display: flex;
+
+    justify-content: center;
+
   }
   
