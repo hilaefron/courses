@@ -29,7 +29,6 @@ router.post('/', async (req, res) => {
     const subjectNameQuery = `SELECT subject_name FROM subjects WHERE subject_id = ${subjectId}`
     const subjectNameResult= await db.query(subjectNameQuery)
     const subjectName=subjectNameResult.rows[0].subject_name
-    console.log(subjectName)
 
     // check if the user is already registered for the course
     try{
@@ -41,21 +40,18 @@ router.post('/', async (req, res) => {
       }
 
       const checkCourseCount_Query =
-      `SELECT COUNT(course_name) FROM registers WHERE course_name LIKE $1`;
+      `SELECT COUNT(name) FROM registers WHERE name LIKE $1`;
       const checkCourseCount_Values = [subjectName + "%"];
       const courseCount = await db.query(
       checkCourseCount_Query,
       checkCourseCount_Values
       
       );
-      console.log(courseCount.rows[0].count)
     const ceil = Math.ceil((parseInt(courseCount.rows[0].count) + 1) / 22);
-    const insertIntoTableQuery =`INSERT INTO registers (student_id, subject_id, course_name) VALUES ($1, $2, $3) RETURNING *`
-    const insertValues=[userId, subjectId, `${subjectName}${ceil}`]
+    const insertIntoTableQuery =`INSERT INTO registers (student_id, subject_id, course_name, name) VALUES ($1, $2, $3, $4) RETURNING *`
+    const insertValues=[userId, subjectId, subjectName, subjectName+ceil]
     const addCourse=await db.query(insertIntoTableQuery,insertValues)
 
-    console.log(subjectName+ceil)
-    console.log(addCourse)
 
     res.send(addCourse.rows)
     }

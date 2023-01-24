@@ -1,0 +1,30 @@
+.navbar {
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px #c5cae9;
+    background-color: #e8eaf6;
+    font-weight: bold;
+    color: #4d4d4d;
+    text-align: center;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+  
+  .nav-item {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .nav-item:hover {
+    cursor: pointer;
+    color: #9fa8da;
+    font-weight: bold;
+  }
+          

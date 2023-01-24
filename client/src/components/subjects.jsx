@@ -37,13 +37,15 @@ const Subjects = () => {
     }
     return (
         <div >
-            <h1 style={{'font-family': 'Poppins', 'text-align': 'center'}}>wellcome to college.com</h1>
+<div className="header-container">
+  <h1>wellcome to college.com</h1>
+</div>
             <div className="subjects-container">
                 {subjects.map((subject, index) => (
                 <div key={index} className="subject-card">
                     <h5 className="subject-name">{subject.subject_name}</h5>
                     <div className="level">Level: {subject.level}</div>
-                    <div className="subject-description">{subject.description.split(' ').slice(0,24).join(' ')}...</div>
+                    <div className="subject-description">{subject.description.split(' ').slice(0,22).join(' ')}...</div>
                     <button className="sign-up-btn" onClick={()=>handleClick(subject)}>
                         Sign up for {subject.subject_name}
                     </button> 
